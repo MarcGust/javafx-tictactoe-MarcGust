@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="5.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.javafxtictactoemarcgust.controller.Controller">
+    <Button fx:id="" text="Omstart" prefWidth="610" style="-fx-font-size: 20;"/>
+    <GridPane fx:id="gridPane" alignment="CENTER" hgap="5" vgap="5">
+        <Button fx:id="button00" text="" prefWidth="200" prefHeight="200" style="-fx-font-size: 25;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Button fx:id="button01" text="" prefWidth="200" prefHeight="200" style="-fx-font-size: 25;" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Button fx:id="button02" text="" prefWidth="200" prefHeight="200" style="-fx-font-size: 25;" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+        <Button fx:id="button10" text="" prefWidth="200" prefHeight="200" style="-fx-font-size: 25;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Button fx:id="button11" text="" prefWidth="200" prefHeight="200" style="-fx-font-size: 25;" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Button fx:id="button12" text="" prefWidth="200" prefHeight="200" style="-fx-font-size: 25;" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+        <Button fx:id="button20" text="" prefWidth="200" prefHeight="200" style="-fx-font-size: 25;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Button fx:id="button21" text="" prefWidth="200" prefHeight="200" style="-fx-font-size: 25;" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Button fx:id="button22" text="" prefWidth="200" prefHeight="200" style="-fx-font-size: 25;" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+    </GridPane>
+</VBox>
