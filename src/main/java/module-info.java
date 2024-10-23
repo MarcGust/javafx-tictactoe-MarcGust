@@ -1,10 +1,11 @@
 module com.example.javafxtictactoemarcgust {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
-    opens com.example.javafxtictactoemarcgust to javafx.fxml;
-    exports com.example.javafxtictactoemarcgust;
-    exports com.example.javafxtictactoemarcgust.controller;
-    opens com.example.javafxtictactoemarcgust.controller to javafx.fxml;
+    opens javafxtictactoemarcgust to javafx.fxml;
+    exports javafxtictactoemarcgust;
+    exports javafxtictactoemarcgust.controller;
+    opens javafxtictactoemarcgust.controller to javafx.fxml;
 }

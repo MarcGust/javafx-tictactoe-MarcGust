@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.javafxtictactoemarcgust/com.example.javafxtictactoemarcgust.Application
+                                com.example.javafxtictactoemarcgust/javafxtictactoemarcgust.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
