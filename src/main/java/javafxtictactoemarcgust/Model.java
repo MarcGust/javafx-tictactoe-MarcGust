@@ -22,9 +22,9 @@ public class Model {
         gameOver = false;
     }
 
-    public boolean makeMove(int row, int col) {
-        if (board[row][col] == ' ' && !gameOver) {
-            board[row][col] = currentPlayer;
+    public boolean makeAMove(int xAxis, int yAxis) {
+        if (board[xAxis][yAxis] == ' ' && !gameOver) {
+            board[xAxis][yAxis] = currentPlayer;
             if (checkWin()) {
                 gameOver = true;
             } else if (isBoardFull()) {
@@ -45,8 +45,8 @@ public class Model {
         return currentPlayer;
     }
 
-    public char getCell(int row, int col) {
-        return board[row][col];
+    public char getBoardSquare(int xAxis, int yAxis) {
+        return board[xAxis][yAxis];
     }
 
     private void switchPlayer() {
@@ -65,7 +65,6 @@ public class Model {
     }
 
     private boolean checkWin() {
-        // Check rows, columns, and diagonals for a win
         for (int i = 0; i < 3; i++) {
             if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
                 return true;

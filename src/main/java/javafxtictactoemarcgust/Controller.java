@@ -20,14 +20,13 @@ public class Controller {
     private Button button00, button01, button02, button10, button11, button12, button20, button21, button22;
 
     private Model model;
-    private boolean isVsAI;
+    private boolean isVsComputer;
     private Random random;
 
     public void initialize() {
         model = new Model();
         random = new Random();
 
-        // Set up button actions
         setButtonAction(button00, 0, 0);
         setButtonAction(button01, 0, 1);
         setButtonAction(button02, 0, 2);
@@ -41,59 +40,59 @@ public class Controller {
         restartButton.setOnAction(event -> handleRestart());
     }
 
-    public void setOpponentType(boolean vsAI) {
-        this.isVsAI = vsAI;
+    public void setOpponentType(boolean vsComputer) {
+        this.isVsComputer = vsComputer;
     }
 
-    private void setButtonAction(Button button, int row, int col) {
-        button.setOnAction(event -> handleButtonPress(row, col, button));
+    private void setButtonAction(Button button, int xAxis, int yAxis) {
+        button.setOnAction(event -> handleButtonClick(xAxis, yAxis, button));
     }
 
-    private void handleButtonPress(int row, int col, Button button) {
-        if (model.makeMove(row, col)) {
+    private void handleButtonClick(int xAxis, int yAxis, Button button) {
+        if (model.makeAMove(xAxis, yAxis)) {
             updateBoard();
             if (model.isGameOver()) {
-                statusLabel.setText("Player " + model.getCurrentPlayer() + " wins!");
-            } else if (isVsAI && model.getCurrentPlayer() == 'O') {
-                aiMove();
+                statusLabel.setText("Spelare " + model.getCurrentPlayer() + " vann!");
+            } else if (isVsComputer && model.getCurrentPlayer() == 'O') {
+                computerMove();
             } else {
-                statusLabel.setText("Player " + model.getCurrentPlayer() + "'s turn");
+                statusLabel.setText("Spelare " + model.getCurrentPlayer() + "tur");
             }
         }
     }
 
-    private void aiMove() {
+    private void computerMove() {
         Platform.runLater(() -> {
-            int row, col;
+            int xAxis, yAxis;
             do {
-                row = random.nextInt(3);
-                col = random.nextInt(3);
-            } while (!model.makeMove(row, col));
+                xAxis = random.nextInt(3);
+                yAxis = random.nextInt(3);
+            } while (!model.makeAMove(xAxis, yAxis));
 
             updateBoard();
             if (model.isGameOver()) {
-                statusLabel.setText("Player " + model.getCurrentPlayer() + " wins!");
+                statusLabel.setText("Spelare " + model.getCurrentPlayer() + " vann!");
             } else {
-                statusLabel.setText("Player " + model.getCurrentPlayer() + "'s turn");
+                statusLabel.setText("Spelare " + model.getCurrentPlayer() + " tur");
             }
         });
     }
 
     private void updateBoard() {
-        button00.setText(String.valueOf(model.getCell(0, 0)));
-        button01.setText(String.valueOf(model.getCell(0, 1)));
-        button02.setText(String.valueOf(model.getCell(0, 2)));
-        button10.setText(String.valueOf(model.getCell(1, 0)));
-        button11.setText(String.valueOf(model.getCell(1, 1)));
-        button12.setText(String.valueOf(model.getCell(1, 2)));
-        button20.setText(String.valueOf(model.getCell(2, 0)));
-        button21.setText(String.valueOf(model.getCell(2, 1)));
-        button22.setText(String.valueOf(model.getCell(2, 2)));
+        button00.setText(String.valueOf(model.getBoardSquare(0, 0)));
+        button01.setText(String.valueOf(model.getBoardSquare(0, 1)));
+        button02.setText(String.valueOf(model.getBoardSquare(0, 2)));
+        button10.setText(String.valueOf(model.getBoardSquare(1, 0)));
+        button11.setText(String.valueOf(model.getBoardSquare(1, 1)));
+        button12.setText(String.valueOf(model.getBoardSquare(1, 2)));
+        button20.setText(String.valueOf(model.getBoardSquare(2, 0)));
+        button21.setText(String.valueOf(model.getBoardSquare(2, 1)));
+        button22.setText(String.valueOf(model.getBoardSquare(2, 2)));
     }
 
     private void handleRestart() {
         model.resetBoard();
         updateBoard();
-        statusLabel.setText("Player X's turn");
+        statusLabel.setText("Spelare X tur");
     }
 }

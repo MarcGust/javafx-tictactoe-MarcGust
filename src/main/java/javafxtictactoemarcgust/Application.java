@@ -11,41 +11,36 @@ import javafx.scene.layout.VBox;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Load FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxtictactoemarcgust/view.fxml"));
         Parent root = loader.load();
 
-        // Get the controller from the FXML loader
         Controller controller = loader.getController();
 
-        // Set up UI components like buttons for choosing opponent types
-        Button vsPlayerButton = new Button("Play vs Player");
-        Button vsAIButton = new Button("Play vs AI");
-        Label selectionLabel = new Label("Choose your opponent:");
+        Button vsPlayerButton = new Button("Spelare mot Spelare");
+        Button vsComputerButton = new Button("Spelare mot Dator");
+        Label selectionLabel = new Label("Välj motståndare:");
 
-        // Actions for the buttons to set the opponent type
         vsPlayerButton.setOnAction(event -> {
-            controller.setOpponentType(false); // Player vs Player
-            primaryStage.setScene(new Scene(root, 400, 450)); // Switch to game scene
-            controller.initialize(); // Re-initialize the controller
+            controller.setOpponentType(false);
+            primaryStage.setScene(new Scene(root, 400, 450));
+            controller.initialize();
         });
 
-        vsAIButton.setOnAction(event -> {
-            controller.setOpponentType(true); // Player vs AI
+        vsComputerButton.setOnAction(event -> {
+            controller.setOpponentType(true);
             primaryStage.setScene(new Scene(root, 400, 450)); // Switch to game scene
-            controller.initialize(); // Re-initialize the controller
+            controller.initialize();
         });
 
-        // Creating a VBox layout for the main menu
-        VBox mainMenu = new VBox(10, selectionLabel, vsPlayerButton, vsAIButton);
-        Scene menuScene = new Scene(mainMenu, 300, 200);
+        VBox mainMenu = new VBox(5, selectionLabel, vsPlayerButton, vsComputerButton);
+        Scene menuScene = new Scene(mainMenu, 400, 450);
 
-        primaryStage.setTitle("Tic Tac Toe"); // Set window title
-        primaryStage.setScene(menuScene); // Set initial scene
-        primaryStage.show(); // Display the window
+        primaryStage.setTitle("Tic Tac Toe");
+        primaryStage.setScene(menuScene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
-        launch(args); // Start the JavaFX application
+        launch(args);
     }
 }

@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Pos?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10" fx:controller="javafxtictactoemarcgust.Controller">
+<VBox alignment="CENTER" spacing="5" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxtictactoemarcgust.Controller">
     <Label fx:id="statusLabel" text="Player X's turn" />
 
-    <GridPane fx:id="gridPane" hgap="10" vgap="10" alignment="CENTER">
-        <!-- Grid of Buttons -->
-        <Button fx:id="button00" text="" style="-fx-font-size: 24;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <Button fx:id="button01" text="" style="-fx-font-size: 24;" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-        <Button fx:id="button02" text="" style="-fx-font-size: 24;" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+    <GridPane fx:id="gridPane" alignment="CENTER" hgap="5" vgap="5">
+        <Button fx:id="button00" minWidth="100" minHeight="100" style="-fx-font-size: 45;" text="" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Button fx:id="button01" minWidth="100" minHeight="100" style="-fx-font-size: 45;" text="" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Button fx:id="button02" minWidth="100" minHeight="100" style="-fx-font-size: 45;" text="" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-        <Button fx:id="button10" text="" style="-fx-font-size: 24;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <Button fx:id="button11" text="" style="-fx-font-size: 24;" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-        <Button fx:id="button12" text="" style="-fx-font-size: 24;" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <Button fx:id="button10" minWidth="100" minHeight="100" style="-fx-font-size: 45;" text="" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Button fx:id="button11" minWidth="100" minHeight="100" style="-fx-font-size: 45;" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Button fx:id="button12" minWidth="100" minHeight="100" style="-fx-font-size: 45;" text="" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-        <Button fx:id="button20" text="" style="-fx-font-size: 24;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <Button fx:id="button21" text="" style="-fx-font-size: 24;" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-        <Button fx:id="button22" text="" style="-fx-font-size: 24;" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+        <Button fx:id="button20" minWidth="100" minHeight="100" style="-fx-font-size: 45;" text="" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Button fx:id="button21" minWidth="100" minHeight="100" style="-fx-font-size: 45;" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button fx:id="button22" minWidth="100" minHeight="100" style="-fx-font-size: 45;" text="" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     </GridPane>
 
-    <HBox spacing="10" alignment="CENTER">
-        <Button fx:id="restartButton" text="Restart" />
+    <HBox alignment="CENTER" spacing="5">
+        <Button fx:id="restartButton" minWidth="100" minHeight="30" text="Omstart" />
     </HBox>
 </VBox>
