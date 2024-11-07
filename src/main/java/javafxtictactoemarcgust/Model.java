@@ -1,5 +1,7 @@
 package javafxtictactoemarcgust;
 
+import java.util.Random;
+
 public class Model {
     private char[][] board;
     private char currentPlayer;
@@ -7,10 +9,11 @@ public class Model {
     private int playerXWins;
     private int playerOWins;
     private int draws;
+    private Random random;
 
     public Model() {
         board = new char[3][3];
-        currentPlayer = 'X';
+        random = new Random();
         gameOver = false;
         resetBoard();
 
@@ -25,7 +28,13 @@ public class Model {
                 board[i][j] = ' ';
             }
         }
-        currentPlayer = 'X';
+
+        if (random.nextBoolean()) {
+            currentPlayer = 'X';
+        } else {
+            currentPlayer = 'O';
+        }
+
         gameOver = false;
     }
 
@@ -34,14 +43,8 @@ public class Model {
             board[xAxis][yAxis] = currentPlayer;
             if (checkWin()) {
                 gameOver = true;
-                if (currentPlayer == 'X') {
-                    playerXWins++;
-                } else {
-                    playerOWins++;
-                }
             } else if (isBoardFull()) {
                 gameOver = true;
-                draws++;
             } else {
                 switchPlayer();
             }

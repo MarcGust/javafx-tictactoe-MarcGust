@@ -32,6 +32,9 @@ public class Controller {
     public void initialize() {
         model = new Model();
         random = new Random();
+        updateBoard();
+        updateScoreDisplay();
+        updateStatusLabel();
 
         setButtonAction(button00, 0, 0);
         setButtonAction(button01, 0, 1);
@@ -55,6 +58,10 @@ public class Controller {
         button.setOnAction(event -> handleButtonClick(xAxis, yAxis, button));
     }
 
+    private void updateStatusLabel() {
+        statusLabel.setText("Spelare " + model.getCurrentPlayer() + " tur");
+    }
+
     private void updateScoreDisplay() {
         scoreLabelX.setText("Spelare X: " + model.getPlayerXWins() + " vinster");
         scoreLabelO.setText("Spelare O: " + model.getPlayerOWins() + " vinster");
@@ -75,7 +82,7 @@ public class Controller {
             } else if (isVsComputer && model.getCurrentPlayer() == 'O') {
                 computerMove();
             } else {
-                statusLabel.setText("Spelare " + model.getCurrentPlayer() + " tur");
+                updateStatusLabel();  // Update the label after each move
             }
         }
     }
@@ -118,6 +125,6 @@ public class Controller {
     private void handleRestart() {
         model.resetBoard();
         updateBoard();
-        statusLabel.setText("Spelare X tur");
+        updateStatusLabel();
     }
 }
