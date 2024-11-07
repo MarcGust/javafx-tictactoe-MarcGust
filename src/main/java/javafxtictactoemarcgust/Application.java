@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.geometry.Pos; // Import for alignment
+import javafx.geometry.Insets; // Import for padding
 
 public class Application extends javafx.application.Application {
     @Override
@@ -28,11 +30,14 @@ public class Application extends javafx.application.Application {
 
         vsComputerButton.setOnAction(event -> {
             controller.setOpponentType(true);
-            primaryStage.setScene(new Scene(root, 400, 450)); // Switch to game scene
+            primaryStage.setScene(new Scene(root, 400, 450));
             controller.initialize();
         });
 
-        VBox mainMenu = new VBox(5, selectionLabel, vsPlayerButton, vsComputerButton);
+        VBox mainMenu = new VBox(15, selectionLabel, vsPlayerButton, vsComputerButton);
+        mainMenu.setAlignment(Pos.CENTER);
+        mainMenu.setPadding(new Insets(20));
+
         Scene menuScene = new Scene(mainMenu, 400, 450);
 
         primaryStage.setTitle("Tic Tac Toe");
