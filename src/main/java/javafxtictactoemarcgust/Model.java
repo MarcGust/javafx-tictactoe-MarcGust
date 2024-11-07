@@ -64,7 +64,7 @@ public class Model {
         return true;
     }
 
-    private boolean checkWin() {
+    boolean checkWin() {
         for (int i = 0; i < 3; i++) {
             if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
                 return true;
@@ -80,5 +80,9 @@ public class Model {
             return true;
         }
         return false;
+    }
+
+    public boolean isDraw() {
+        return isBoardFull() && !checkWin();
     }
 }

@@ -52,11 +52,15 @@ public class Controller {
         if (model.makeAMove(xAxis, yAxis)) {
             updateBoard();
             if (model.isGameOver()) {
-                statusLabel.setText("Spelare " + model.getCurrentPlayer() + " vann!");
+                if (model.checkWin()) {
+                    statusLabel.setText("Spelare " + model.getCurrentPlayer() + " vann!");
+                } else if (model.isDraw()) {
+                    statusLabel.setText("Oavgjort!"); // Display draw message
+                }
             } else if (isVsComputer && model.getCurrentPlayer() == 'O') {
                 computerMove();
             } else {
-                statusLabel.setText("Spelare " + model.getCurrentPlayer() + "tur");
+                statusLabel.setText("Spelare " + model.getCurrentPlayer() + " tur");
             }
         }
     }
