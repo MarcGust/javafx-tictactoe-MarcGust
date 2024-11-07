@@ -4,12 +4,19 @@ public class Model {
     private char[][] board;
     private char currentPlayer;
     private boolean gameOver;
+    private int playerXWins;
+    private int playerOWins;
+    private int draws;
 
     public Model() {
         board = new char[3][3];
         currentPlayer = 'X';
         gameOver = false;
         resetBoard();
+
+        playerXWins = 0;
+        playerOWins = 0;
+        draws = 0;
     }
 
     public void resetBoard() {
@@ -27,14 +34,32 @@ public class Model {
             board[xAxis][yAxis] = currentPlayer;
             if (checkWin()) {
                 gameOver = true;
+                if (currentPlayer == 'X') {
+                    playerXWins++;
+                } else {
+                    playerOWins++;
+                }
             } else if (isBoardFull()) {
                 gameOver = true;
+                draws++;
             } else {
                 switchPlayer();
             }
             return true;
         }
         return false;
+    }
+
+    public int getPlayerXWins() {
+        return playerXWins;
+    }
+
+    public int getPlayerOWins() {
+        return playerOWins;
+    }
+
+    public int getDraws() {
+        return draws;
     }
 
     public boolean isGameOver() {

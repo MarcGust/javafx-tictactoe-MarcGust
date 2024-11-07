@@ -14,6 +14,12 @@ public class Controller {
     @FXML
     private Label statusLabel;
     @FXML
+    private Label scoreLabelX;
+    @FXML
+    private Label scoreLabelO;
+    @FXML
+    private Label scoreLabelDraws;
+    @FXML
     private Button restartButton;
 
     @FXML
@@ -38,6 +44,7 @@ public class Controller {
         setButtonAction(button22, 2, 2);
 
         restartButton.setOnAction(event -> handleRestart());
+        updateScoreDisplay();
     }
 
     public void setOpponentType(boolean vsComputer) {
@@ -48,15 +55,23 @@ public class Controller {
         button.setOnAction(event -> handleButtonClick(xAxis, yAxis, button));
     }
 
+    private void updateScoreDisplay() {
+        scoreLabelX.setText("Spelare X: " + model.getPlayerXWins() + " vinster");
+        scoreLabelO.setText("Spelare O: " + model.getPlayerOWins() + " vinster");
+        scoreLabelDraws.setText("Oavgjort: " + model.getDraws() + " gånger");
+    }
+
     private void handleButtonClick(int xAxis, int yAxis, Button button) {
         if (model.makeAMove(xAxis, yAxis)) {
             updateBoard();
+
             if (model.isGameOver()) {
                 if (model.checkWin()) {
                     statusLabel.setText("Spelare " + model.getCurrentPlayer() + " vann!");
                 } else if (model.isDraw()) {
-                    statusLabel.setText("Oavgjort!"); // Display draw message
+                    statusLabel.setText("Oavgjort!");
                 }
+                updateScoreDisplay();
             } else if (isVsComputer && model.getCurrentPlayer() == 'O') {
                 computerMove();
             } else {
@@ -74,8 +89,14 @@ public class Controller {
             } while (!model.makeAMove(xAxis, yAxis));
 
             updateBoard();
+
             if (model.isGameOver()) {
-                statusLabel.setText("Spelare " + model.getCurrentPlayer() + " vann!");
+                if (model.checkWin()) {
+                    statusLabel.setText("Spelare " + model.getCurrentPlayer() + " vann!");
+                } else if (model.isDraw()) {
+                    statusLabel.setText("Oavgjort!");
+                }
+                updateScoreDisplay();
             } else {
                 statusLabel.setText("Spelare " + model.getCurrentPlayer() + " tur");
             }
