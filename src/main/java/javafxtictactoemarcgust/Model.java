@@ -41,10 +41,19 @@ public class Model {
     public boolean makeAMove(int xAxis, int yAxis) {
         if (board[xAxis][yAxis] == ' ' && !gameOver) {
             board[xAxis][yAxis] = currentPlayer;
+
             if (checkWin()) {
                 gameOver = true;
+
+                if (currentPlayer == 'X') {
+                    playerXWins++;
+                } else if (currentPlayer == 'O') {
+                    playerOWins++;
+                }
+
             } else if (isBoardFull()) {
                 gameOver = true;
+                draws++;
             } else {
                 switchPlayer();
             }
