@@ -70,11 +70,11 @@ public class ModelTest {
             model.makeAMove(0, 0);
         }
 
-        model.makeAMove(0, 0);
         model.makeAMove(1, 0);
         model.makeAMove(0, 1);
         model.makeAMove(1, 1);
-        model.makeAMove(0, 2);
+        model.makeAMove(2, 2);
+        model.makeAMove(1, 2);
 
         assertTrue(model.isGameOver(), "Spelet är slut när en spelare X vinner");
         assertEquals(1, model.getPlayerXWins(), "Spelare X borde ha 1 vinst");
@@ -106,20 +106,25 @@ public class ModelTest {
     public void testScoreAfterMultipleGames() {
         Model model = new Model();
 
-        if (model.getCurrentPlayer() == 'O') {
+        if (model.getCurrentPlayer() == 'X') {
+            model.makeAMove(0, 0);
+            model.makeAMove(1, 0);
+            model.makeAMove(0, 1);
+            model.makeAMove(1, 1);
+            model.makeAMove(0, 2);
+        } else {
             model.makeAMove(1, 0);
             model.makeAMove(0, 0);
             model.makeAMove(1, 1);
             model.makeAMove(0, 1);
             model.makeAMove(2, 2);
             model.makeAMove(0, 2);
-        } else {
-            model.makeAMove(0, 0);
-            model.makeAMove(1, 0);
-            model.makeAMove(0, 1);
-            model.makeAMove(1, 1);
-            model.makeAMove(0, 2);
         }
+
+        assertEquals(1, model.getPlayerXWins(), "Spelare X borde ha 1 vinst efter första matchen");
+        assertEquals(0, model.getPlayerOWins(), "Spelare O borde ha 0 vinster efter första matchen");
+        assertEquals(0, model.getDraws(), "Oavgjort borde ha 0 vinster efter första matchen");
+
         model.resetBoard();
 
         if (model.getCurrentPlayer() == 'X') {
@@ -127,8 +132,8 @@ public class ModelTest {
             model.makeAMove(1, 0);
             model.makeAMove(0, 1);
             model.makeAMove(1, 1);
-            model.makeAMove(2, 2);
             model.makeAMove(1, 2);
+            model.makeAMove(2, 2);
         } else {
             model.makeAMove(1, 0);
             model.makeAMove(0, 0);
@@ -136,32 +141,37 @@ public class ModelTest {
             model.makeAMove(0, 1);
             model.makeAMove(2, 2);
         }
+
+        assertEquals(1, model.getPlayerXWins(), "Spelare X borde ha 1 vinst efter andra matchen");
+        assertEquals(1, model.getPlayerOWins(), "Spelare O borde ha 1 vinst efter andra matchen");
+        assertEquals(0, model.getDraws(), "Oavgjort borde ha 0 vinster efter andra matchen");
+
         model.resetBoard();
 
-        if (model.getCurrentPlayer() == 'O') {
-            model.makeAMove(0, 1);
+        if (model.getCurrentPlayer() == 'X') {
             model.makeAMove(0, 0);
+            model.makeAMove(0, 1);
             model.makeAMove(0, 2);
             model.makeAMove(1, 1);
-            model.makeAMove(1, 2);
             model.makeAMove(1, 0);
-            model.makeAMove(2, 0);
+            model.makeAMove(1, 2);
             model.makeAMove(2, 1);
+            model.makeAMove(2, 0);
             model.makeAMove(2, 2);
         } else {
-            model.makeAMove(0, 0);
             model.makeAMove(0, 1);
+            model.makeAMove(0, 0);
             model.makeAMove(0, 2);
             model.makeAMove(1, 1);
             model.makeAMove(1, 0);
             model.makeAMove(1, 2);
-            model.makeAMove(2, 1);
             model.makeAMove(2, 0);
+            model.makeAMove(2, 1);
             model.makeAMove(2, 2);
         }
 
-        assertEquals(1, model.getPlayerXWins(), "Spelare X borde ha en vinst efter första matchen");
-        assertEquals(1, model.getPlayerOWins(), "Spelare O borde ha en vinst efter andra matchen");
-        assertEquals(1, model.getDraws(), "Det borde vara en oavgjord match efter tredje matchen");
+        assertEquals(1, model.getPlayerXWins(), "Spelare X borde ha 1 vinst efter tredje matchen");
+        assertEquals(1, model.getPlayerOWins(), "Spelare O borde ha 1 vinst efter tredje matchen");
+        assertEquals(1, model.getDraws(), "Det borde vara 1 oavgjord match efter tredje matchen");
     }
 }
