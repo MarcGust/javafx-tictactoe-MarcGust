@@ -18,9 +18,9 @@ public class Application extends javafx.application.Application {
 
         Controller controller = loader.getController();
 
+        Label selectionLabel = new Label("Välj motståndare:");
         Button vsPlayerButton = new Button("Spelare mot Spelare");
         Button vsComputerButton = new Button("Spelare mot Dator");
-        Label selectionLabel = new Label("Välj motståndare:");
 
         vsPlayerButton.setOnAction(event -> {
             controller.setOpponentType(false);

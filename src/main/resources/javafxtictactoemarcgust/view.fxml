@@ -38,6 +38,6 @@
     </GridPane>
 
     <HBox alignment="CENTER" spacing="5">
-        <Button fx:id="restartButton" minHeight="30" minWidth="100" text="Omstart" />
+        <Button fx:id="restartButton" minHeight="30" minWidth="100" text="Revansch!" />
     </HBox>
 </VBox>

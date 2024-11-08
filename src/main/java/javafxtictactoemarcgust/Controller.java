@@ -82,7 +82,7 @@ public class Controller {
             } else if (isVsComputer && model.getCurrentPlayer() == 'O') {
                 computerMove();
             } else {
-                updateStatusLabel();  // Update the label after each move
+                updateStatusLabel();
             }
         }
     }
