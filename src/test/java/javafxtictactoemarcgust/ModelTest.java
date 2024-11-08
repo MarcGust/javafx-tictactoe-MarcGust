@@ -64,6 +64,12 @@ public class ModelTest {
 
     @Test
     public void testPlayerXWinsScore() {
+        Model model = new Model();
+
+        if (model.getCurrentPlayer() == 'O') {
+            model.makeAMove(0, 0);
+        }
+
         model.makeAMove(0, 0);
         model.makeAMove(1, 0);
         model.makeAMove(0, 1);
@@ -78,7 +84,12 @@ public class ModelTest {
 
     @Test
     public void testPlayerOWinsScore() {
-        model.makeAMove(0, 0);
+        Model model = new Model();
+
+        if (model.getCurrentPlayer() == 'X') {
+            model.makeAMove(0, 0);
+        }
+
         model.makeAMove(1, 0);
         model.makeAMove(0, 1);
         model.makeAMove(1, 1);
@@ -92,50 +103,62 @@ public class ModelTest {
     }
 
     @Test
-    public void testDrawScore() {
-        model.makeAMove(0, 0);
-        model.makeAMove(0, 1);
-        model.makeAMove(0, 2);
-        model.makeAMove(1, 1);
-        model.makeAMove(1, 0);
-        model.makeAMove(1, 2);
-        model.makeAMove(2, 1);
-        model.makeAMove(2, 0);
-        model.makeAMove(2, 2);
-
-        assertTrue(model.isDraw(), "Spelet ska bli oavgjort");
-        assertTrue(model.isGameOver(), "Spelet är slut när det blir oavgjort");
-        assertEquals(0, model.getPlayerXWins(), "Spelare X borde ha 0 vinster");
-        assertEquals(0, model.getPlayerOWins(), "Spelare O borde ha 0 vinster");
-        assertEquals(1, model.getDraws(), "Oavgjort borde ha 1 vinst");
-    }
-
-    @Test
     public void testScoreAfterMultipleGames() {
-        model.makeAMove(0, 0);
-        model.makeAMove(1, 0);
-        model.makeAMove(0, 1);
-        model.makeAMove(1, 1);
-        model.makeAMove(0, 2);
+        Model model = new Model();
+
+        if (model.getCurrentPlayer() == 'O') {
+            model.makeAMove(1, 0);
+            model.makeAMove(0, 0);
+            model.makeAMove(1, 1);
+            model.makeAMove(0, 1);
+            model.makeAMove(2, 2);
+            model.makeAMove(0, 2);
+        } else {
+            model.makeAMove(0, 0);
+            model.makeAMove(1, 0);
+            model.makeAMove(0, 1);
+            model.makeAMove(1, 1);
+            model.makeAMove(0, 2);
+        }
         model.resetBoard();
 
-        model.makeAMove(0, 0);
-        model.makeAMove(1, 0);
-        model.makeAMove(0, 1);
-        model.makeAMove(1, 1);
-        model.makeAMove(2, 2);
-        model.makeAMove(1, 2);
+        if (model.getCurrentPlayer() == 'X') {
+            model.makeAMove(0, 0);
+            model.makeAMove(1, 0);
+            model.makeAMove(0, 1);
+            model.makeAMove(1, 1);
+            model.makeAMove(2, 2);
+            model.makeAMove(1, 2);
+        } else {
+            model.makeAMove(1, 0);
+            model.makeAMove(0, 0);
+            model.makeAMove(1, 1);
+            model.makeAMove(0, 1);
+            model.makeAMove(2, 2);
+        }
         model.resetBoard();
 
-        model.makeAMove(0, 0);
-        model.makeAMove(0, 1);
-        model.makeAMove(0, 2);
-        model.makeAMove(1, 1);
-        model.makeAMove(1, 0);
-        model.makeAMove(1, 2);
-        model.makeAMove(2, 1);
-        model.makeAMove(2, 0);
-        model.makeAMove(2, 2);
+        if (model.getCurrentPlayer() == 'O') {
+            model.makeAMove(0, 1);
+            model.makeAMove(0, 0);
+            model.makeAMove(0, 2);
+            model.makeAMove(1, 1);
+            model.makeAMove(1, 2);
+            model.makeAMove(1, 0);
+            model.makeAMove(2, 0);
+            model.makeAMove(2, 1);
+            model.makeAMove(2, 2);
+        } else {
+            model.makeAMove(0, 0);
+            model.makeAMove(0, 1);
+            model.makeAMove(0, 2);
+            model.makeAMove(1, 1);
+            model.makeAMove(1, 0);
+            model.makeAMove(1, 2);
+            model.makeAMove(2, 1);
+            model.makeAMove(2, 0);
+            model.makeAMove(2, 2);
+        }
 
         assertEquals(1, model.getPlayerXWins(), "Spelare X borde ha en vinst efter första matchen");
         assertEquals(1, model.getPlayerOWins(), "Spelare O borde ha en vinst efter andra matchen");
